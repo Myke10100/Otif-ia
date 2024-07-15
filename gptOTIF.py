@@ -111,3 +111,4 @@ if prompt := st.chat_input("Hágame una pregunta sobre gestión de pedidos"):
         st.markdown(response_text)
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
+
