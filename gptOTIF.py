@@ -1,11 +1,12 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key="sk-None-zLtr5QRP497zGajYrkp9T3BlbkFJE64bIkuw1x65sdD5Ij3l")
 import json
 import requests
 
-# Set up the page configuration
+# Configuración básica de la página
 st.set_page_config(layout="wide")
-
 
 # Crear las columnas
 col1, col2, col3 = st.columns([1, 4, 1])
@@ -16,15 +17,11 @@ with col1:
 with col2:
     st.title("Chat de asistencia Ofi Services")
 
-#with col3:
-   #st.image("https://brandworld.ab-inbev.com/sites/g/files/wnfebl3996/files/Style%20Guide/MicrosoftTeams-image%20%282%29.png")
-
-
-openai.api_key = "sk-proj-IXnNYf0z335ehaLHFAUST3BlbkFJ9qDdxQYNIrc4vMmZE6rz"
+# Acceder a la clave API de OpenAI directamente
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4o"
+    st.session_state["openai_model"] = "gpt-4"
 
 # Inicializar los mensajes de la conversación
 if "messages" not in st.session_state:
@@ -34,7 +31,7 @@ if "messages" not in st.session_state:
 @st.cache_data
 def load_project_management_info(url):
     response = requests.get(url)
-    
+
     if response.status_code != 200:
         st.error(f"Error al obtener el JSON: {response.status_code}")
         st.stop()
@@ -77,14 +74,14 @@ initial_prompt = (
     "Si recibe un saludo como 'hola' o 'hola', preséntese diciendo: 'Hola, soy el asistente especializado en logística, gestión de la cadena de suministro. ¿En qué puedo ayudarle hoy?'\n"
     "Por favor, responda a las preguntas de forma clara y directa, evitando la jerga técnica y centrándose en información práctica y fácil de entender basada en el conjunto de datos proporcionado.")
 
-# Show a welcome message and description
+# Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
     st.session_state.messages.append({"role": "system", "content": initial_prompt})
     with st.chat_message("assistant"):
-        st.markdown("I am a virtual MAZ Continuous Improvement Assistant")
+        st.markdown("Hola, soy el asistente especializado en logística y gestión de la cadena de suministro. ¿En qué puedo ayudarle hoy?")
 
-# Display chat history
-st.header("Chat History")
+# Mostrar historial de chat
+st.header("Asistente Virtual")
 for message in st.session_state.messages:
     if message["role"] == "user":
         with st.chat_message("user"):
@@ -93,21 +90,22 @@ for message in st.session_state.messages:
         with st.chat_message("assistant"):
             st.markdown(message["content"])
 
-# Handle user input
-if prompt := st.chat_input("Ask me a question about project management"):
+# Manejar la entrada del usuario
+if prompt := st.chat_input("Hágame una pregunta sobre gestión de pedidos"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-
     # Llamar a la API de OpenAI para obtener la respuesta
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
-        response = openai.chat.completions.create(
-            model=st.session_state["openai_model"],
-            messages=messages
-        )
-        response_text = response.choices[0].message.content
+        try:
+            response = client.chat.completions.create(model=st.session_state["openai_model"],
+            messages=messages)
+            response_text = response.choices[0].message.content
+        except Exception as e:
+            response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
+
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
     st.session_state.messages.append({"role": "assistant", "content": response_text})
