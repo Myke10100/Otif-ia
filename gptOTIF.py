@@ -1,7 +1,5 @@
 import streamlit as st
-from openai import OpenAI
-
-client = OpenAI(api_key="sk-None-zLtr5QRP497zGajYrkp9T3BlbkFJE64bIkuw1x65sdD5Ij3l")
+import openai
 import json
 import requests
 
@@ -17,7 +15,8 @@ with col1:
 with col2:
     st.title("Chat de asistencia Ofi Services")
 
-# Acceder a la clave API de OpenAI directamente
+# Acceder a la clave API de OpenAI desde secretos
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
@@ -100,12 +99,15 @@ if prompt := st.chat_input("Hágame una pregunta sobre gestión de pedidos"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat.completions.create(model=st.session_state["openai_model"],
-            messages=messages)
-            response_text = response.choices[0].message.content
+            response = openai.ChatCompletion.create(
+                model=st.session_state["openai_model"],
+                messages=messages
+            )
+            response_text = response.choices[0].message["content"]
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
