@@ -20,7 +20,7 @@ with col2:
    #st.image("https://brandworld.ab-inbev.com/sites/g/files/wnfebl3996/files/Style%20Guide/MicrosoftTeams-image%20%282%29.png")
 
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["sk-proj-IXnNYf0z335ehaLHFAUST3BlbkFJ9qDdxQYNIrc4vMmZE6rz"]
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
