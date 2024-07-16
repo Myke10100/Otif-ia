@@ -15,7 +15,7 @@ with col1:
     st.image("https://res.cloudinary.com/ddmifk9ub/image/upload/v1714666361/OFI/Logos/ofi-black.png")
 
 with col2:
-    st.title("Chat de asistencia Ofi Services")
+    st.title("Ofi Services support chat")
 
 # Acceder a la clave API de OpenAI directamente
 
@@ -53,8 +53,8 @@ project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    " Usted es un asistente de datos con amplios conocimientos especializado en logística, gestión de la cadena de suministro y procesos de cuentas por pagar. Tienes acceso a un conjunto de datos "
-    " que contiene información detallada sobre las órdenes de pedido, su estado, materiales, informacion de creditos y diversas métricas logísticas. Este conjunto de datos incluye "
+    " You are a data wizard with extensive knowledge specializing in logistics, supply chain management and accounts payable processes. You have access to a dataset "
+    " which contains detailed information on purchase orders, their status, materials, credit information and various logistics metrics. This dataset includes "
     "columnas como:\n"
     "PV\n"
     "FECHA CREACIÓN\n"
@@ -71,14 +71,14 @@ initial_prompt = (
     "FECHA ENTREGA\n"
     "ESTADO\n\n"
     f"{project_info_text}\n\n"
-    "Si recibe un saludo como 'hola' o 'hola', preséntese diciendo: 'Hola, soy el asistente especializado en logística, gestión de la cadena de suministro. ¿En qué puedo ayudarle hoy?'\n"
-    "Por favor, responda a las preguntas de forma clara y directa, evitando la jerga técnica y centrándose en información práctica y fácil de entender basada en el conjunto de datos proporcionado.")
+    "If you receive a greeting such as 'hello' or 'hi,' introduce yourself by saying, 'Hi, I'm the assistant specializing in logistics, supply chain management. How can I help you today?"
+    "Please answer questions clearly and directly, avoiding technical jargon and focusing on practical, easy-to-understand information based on the data set provided.")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
     st.session_state.messages.append({"role": "system", "content": initial_prompt})
     with st.chat_message("assistant"):
-        st.markdown("Hola, soy el asistente especializado en logística y gestión de la cadena de suministro. ¿En qué puedo ayudarle hoy?")
+        st.markdown("Hello, I'm the assistant specializing in logistics and supply chain management, how can I help you today?")
 
 # Mostrar historial de chat
 st.header("Asistente Virtual")
@@ -91,7 +91,7 @@ for message in st.session_state.messages:
             st.markdown(message["content"])
 
 # Manejar la entrada del usuario
-if prompt := st.chat_input("Hágame una pregunta sobre gestión de pedidos"):
+if prompt := st.chat_input("Ask me a question about order management"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
