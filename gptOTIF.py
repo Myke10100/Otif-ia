@@ -81,7 +81,7 @@ if not st.session_state.messages:
         st.markdown("Hello, I'm the assistant specializing in logistics and supply chain management, how can I help you today?")
 
 # Mostrar historial de chat
-st.header("Asistente Virtual")
+st.header("Virtual Assistant")
 for message in st.session_state.messages:
     if message["role"] == "user":
         with st.chat_message("user"):
