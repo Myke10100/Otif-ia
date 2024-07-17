@@ -133,7 +133,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
                 model=st.session_state["openai_model"],
                 messages=messages
             )
-            response_text = response.choices[0].message['content']
+            response_text = response.choices[0].message["content"]
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
@@ -164,6 +164,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
                 st.markdown("Click the button above to generate a graph.")
 
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
 
 
 
