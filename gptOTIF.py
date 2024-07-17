@@ -53,8 +53,8 @@ project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis concerning OTIF processes. You have access to a data set"
-    " which contains detailed information on purchase orders, their status, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This dataset includes"
+    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes"
+    "You will have access to detailed information on purchase orders, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This data set includes:"
     "columnas como:\n"
     "PO\n"
     "Creation Date\n"
@@ -75,7 +75,7 @@ initial_prompt = (
     "Order Priority\n\n"
     f"{project_info_text}\n\n"
     "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
-    "Answer questions clearly and directly, avoiding technical jargon and focusing on practical and easy to understand information, remember you are a consultant. give information less than 1000 characters.")
+    "Answer the questions in a clear and direct way, avoid at all costs to give details of the analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers. ")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
