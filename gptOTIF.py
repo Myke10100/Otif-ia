@@ -1,11 +1,10 @@
 import streamlit as st
-from openai import OpenAI
+import openai  # Importamos openai directamente
 import json
 import requests
 import matplotlib.pyplot as plt
-import io
 
-client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Configuración básica de la página
 st.set_page_config(layout="wide")
@@ -21,7 +20,7 @@ with col2:
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4o"
+    st.session_state["openai_model"] = "gpt-4"
 
 # Inicializar los mensajes de la conversación
 if "messages" not in st.session_state:
@@ -102,7 +101,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat_completions.create(
+            response = openai.ChatCompletion.create(
                 model=st.session_state["openai_model"],
                 messages=messages
             )
