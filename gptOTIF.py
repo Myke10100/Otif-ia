@@ -53,7 +53,7 @@ project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes"
+    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes. "
     "You will have access to detailed information on purchase orders, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This data set includes:"
     "columnas como:\n"
     "PO\n"
@@ -75,7 +75,7 @@ initial_prompt = (
     "Order Priority\n\n"
     f"{project_info_text}\n\n"
     "If you receive a 'hello' or 'hi' greeting, introduce yourself by saying, 'Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?'"
-    "Answer the questions in a clear and direct way, avoid at all costs to give details of the analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers."
+    " Answer the questions in a clear and direct way, avoid at all costs to give details of the analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers."
 )
 
 # Mostrar un mensaje de bienvenida y descripción
@@ -161,5 +161,6 @@ if prompt := st.chat_input("Ask me a question about order management"):
                 st.markdown("Click the button above to generate a graph.")
 
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
 
 
