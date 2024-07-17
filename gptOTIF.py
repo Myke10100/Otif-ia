@@ -53,32 +53,35 @@ project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    " You are a data wizard with extensive knowledge specializing in logistics, supply chain management and accounts payable processes. You have access to a dataset "
-    " which contains detailed information on purchase orders, their status, materials, credit information and various logistics metrics. This dataset includes "
+    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis concerning OTIF processes. You have access to a data set"
+    " which contains detailed information on purchase orders, their status, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This dataset includes"
     "columnas como:\n"
-    "PV\n"
-    "FECHA CREACIÓN\n"
-    "VALOR PV\n"
+    "PO\n"
+    "Creation Date\n"
+    "Order Value\n"
     "MATERIAL\n"
-    "NEGOCIO\n"
-    "CLIENTE\n"
-    "CANTIDAD"
-    "LÍMITE DE CRÉDITO\n"
-    "CRÉDITO USADO\n"
-    "% CRÉDITO USADO\n"
-    "NUMERO DE ENTREGA\n"
-    "FECHA COMPROMISO ENTREGA\n"
-    "FECHA ENTREGA\n"
-    "ESTADO\n\n"
+    "Business Unit\n"
+    "Client\n"
+    "Committed Quantity\n"
+    "Actual Delivered Quantity\n"
+    "Credit Limitd\n"
+    "Credit Used\n"
+    "% Credit Used\n"
+    "Committed Delivery Date\n"
+    "Actual Delivery Date\n"
+    "Reason for Delay\n"
+    "Supplier\n"
+    "Warehouse Location\n"
+    "Order Priority\n\n"
     f"{project_info_text}\n\n"
-    "If you receive a greeting such as 'hello' or 'hi,' introduce yourself by saying, 'Hi, I'm the assistant specializing in logistics, supply chain management. How can I help you today?"
-    "Please answer questions clearly and directly, avoiding technical jargon and focusing on practical, easy-to-understand information based on the data set provided.")
+    "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
+    "Answer questions clearly and directly, avoiding technical jargon and focusing on practical, easy-to-understand information based on the data set provided. remember you are a consultant, try to include graphics to give a more specific explanation of the information")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
     st.session_state.messages.append({"role": "system", "content": initial_prompt})
     with st.chat_message("assistant"):
-        st.markdown("Hello, I'm the assistant specializing in logistics and supply chain management, how can I help you today?")
+        st.markdown("Hello, I am the assistant specialized in OTIF related processes, how can I help you today?")
 
 # Mostrar historial de chat
 st.header("Virtual Assistant")
