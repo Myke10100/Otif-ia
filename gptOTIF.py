@@ -1,5 +1,5 @@
 import streamlit as st
-import openai  # Importamos openai directamente
+import openai
 import json
 import requests
 import matplotlib.pyplot as plt
@@ -61,7 +61,7 @@ initial_prompt = (
     "Client\n"
     "Committed Quantity\n"
     "Actual Delivered Quantity\n"
-    "Credit Limitd\n"
+    "Credit Limit\n"
     "Credit Used\n"
     "% Credit Used\n"
     "Committed Delivery Date\n"
@@ -105,7 +105,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
                 model=st.session_state["openai_model"],
                 messages=messages
             )
-            response_text = response.choices[0].message["content"]
+            response_text = response['choices'][0]['message']['content']
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
@@ -122,6 +122,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)
 
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
 
 
 
