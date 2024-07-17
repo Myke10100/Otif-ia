@@ -3,8 +3,7 @@ import openai
 import json
 import requests
 import matplotlib.pyplot as plt
-
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+import io
 
 # Configuración básica de la página
 st.set_page_config(layout="wide")
@@ -18,6 +17,9 @@ with col1:
 with col2:
     st.title("Ofi Services support chat")
 
+# Acceder a la clave API de OpenAI directamente
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4"
@@ -30,9 +32,11 @@ if "messages" not in st.session_state:
 @st.cache_data
 def load_project_management_info(url):
     response = requests.get(url)
+
     if response.status_code != 200:
         st.error(f"Error al obtener el JSON: {response.status_code}")
         st.stop()
+
     try:
         return response.json()
     except json.JSONDecodeError as e:
@@ -101,11 +105,12 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = openai.ChatCompletion.create(
+            response = openai.Completion.create(
                 model=st.session_state["openai_model"],
-                messages=messages
+                prompt="\n".join([f"{msg['role']}: {msg['content']}" for msg in messages]),
+                max_tokens=150
             )
-            response_text = response['choices'][0]['message']['content']
+            response_text = response.choices[0].text.strip()
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
@@ -122,6 +127,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)
 
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
 
 
 
