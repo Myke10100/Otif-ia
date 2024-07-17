@@ -1,8 +1,9 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+
+client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
 import requests
-import matplotlib.pyplot as plt
 
 # Configuración básica de la página
 st.set_page_config(layout="wide")
@@ -16,24 +17,25 @@ with col1:
 with col2:
     st.title("Ofi Services support chat")
 
-# Inicializar la clave API de OpenAI directamente desde los secretos
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+# Acceder a la clave API de OpenAI directamente
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4"
+    st.session_state["openai_model"] = "gpt-4o"
 
 # Inicializar los mensajes de la conversación
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Función para cargar el JSON de gestión de proyectos desde GitHub
-@st.cache
+@st.cache_data
 def load_project_management_info(url):
     response = requests.get(url)
+
     if response.status_code != 200:
         st.error(f"Error al obtener el JSON: {response.status_code}")
         st.stop()
+
     try:
         return response.json()
     except json.JSONDecodeError as e:
@@ -51,48 +53,65 @@ project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    "Hello, I am the assistant specialized in OTIF related processes. How can I help you today?\n\n"
-    f"Additional information:\n{project_info_text}"
-)
+    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes"
+    "You will have access to detailed information on purchase orders, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This data set includes:"
+    "columnas como:\n"
+    "PO\n"
+    "Creation Date\n"
+    "Order Value\n"
+    "MATERIAL\n"
+    "Business Unit\n"
+    "Client\n"
+    "Committed Quantity\n"
+    "Actual Delivered Quantity\n"
+    "Credit Limitd\n"
+    "Credit Used\n"
+    "% Credit Used\n"
+    "Committed Delivery Date\n"
+    "Actual Delivery Date\n"
+    "Reason for Delay\n"
+    "Supplier\n"
+    "Warehouse Location\n"
+    "Order Priority\n\n"
+    f"{project_info_text}\n\n"
+    "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
+    "Answer the questions in a clear and direct way, avoid at all costs to give details of the analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers. ")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
-    st.session_state.messages.append({"role": "assistant", "content": initial_prompt})
+    st.session_state.messages.append({"role": "system", "content": initial_prompt})
+    with st.chat_message("assistant"):
+        st.markdown("Hello, I am the assistant specialized in OTIF related processes, how can I help you today?")
 
 # Mostrar historial de chat
 st.header("Virtual Assistant")
 for message in st.session_state.messages:
-    with st.expander(f"{message['role'].title()} says:"):
-        st.markdown(message["content"])
+    if message["role"] == "user":
+        with st.chat_message("user"):
+            st.markdown(message["content"])
+    elif message["role"] == "assistant":
+        with st.chat_message("assistant"):
+            st.markdown(message["content"])
 
 # Manejar la entrada del usuario
-user_input = st.text_input("Ask me a question about order management")
-if st.button("Send"):
-    st.session_state.messages.append({"role": "user", "content": user_input})
+if prompt := st.chat_input("Ask me a question about order management"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
     # Llamar a la API de OpenAI para obtener la respuesta
-    messages_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in st.session_state.messages])
-    try:
-        response = openai.Completion.create(
-            model=st.session_state["openai_model"],
-            prompt=messages_text,
-            max_tokens=150
-        )
-        response_text = response.choices[0].text.strip()
-        st.session_state.messages.append({"role": "assistant", "content": response_text})
+    with st.chat_message("assistant"):
+        messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
+        try:
+            response = client.chat.completions.create(model=st.session_state["openai_model"],
+            messages=messages)
+            response_text = response.choices[0].message.content
+        except Exception as e:
+            response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
-        # Verificar si la respuesta contiene un comando para crear un gráfico
-        if "##chart" in response_text:
-            # Aquí se crea un gráfico de ejemplo
-            fig, ax = plt.subplots()
-            ax.plot([1, 2, 3, 4], [10, 20, 25, 30])
-            ax.set_title("Sample Chart")
-            st.pyplot(fig)
-            response_text = response_text.replace("##chart", "")
-            st.session_state.messages[-1]["content"] = response_text  # Actualizar el último mensaje
-
-    except Exception as e:
-        st.error(f"Error al obtener la respuesta de OpenAI: {str(e)}")
+        # Mostrar la respuesta del asistente
+        st.markdown(response_text)
+    st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
 
