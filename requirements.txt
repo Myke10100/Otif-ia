@@ -1,5 +1,5 @@
-streamlit==1.17.0
-openai==0.28.0  # Asegúrate de usar una versión que sea compatible con tu código.
-matplotlib==3.5.3
-requests==2.28.1
-numpy==1.23.2
+streamlit
+openai  # Asegúrate de usar una versión que sea compatible con tu código.
+matplotlib
+requests
+numpy
