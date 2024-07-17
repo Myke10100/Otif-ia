@@ -1,5 +1,5 @@
 streamlit
-openai migrate
+openai
 matplotlib
 requests
 numpy
