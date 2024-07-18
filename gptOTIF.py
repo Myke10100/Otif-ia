@@ -2,6 +2,7 @@ import streamlit as st
 from openai import OpenAI
 import matplotlib.pyplot as plt
 import plotly.express as px
+import pandas as pd
 
 client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
