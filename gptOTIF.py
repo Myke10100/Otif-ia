@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
@@ -112,15 +113,12 @@ if prompt := st.chat_input("Ask me a question about order management"):
 
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
-        if "graph" in prompt.lower():
-            # Genera un gráfico de ejemplo
-            plt.figure(figsize=(8, 4))
-            plt.plot([1, 2, 3, 4], [10, 15, 7, 10], marker='o', label='Serie A')
-            plt.title('Ejemplo de Gráfico Profesional')
-            plt.xlabel('Eje X')
-            plt.ylabel('Eje Y')
-            plt.legend()
-            plt.show()
+            if "graph" in prompt.lower():
+            # Suponiendo que tienes los datos necesarios ya en df
+            fig = px.bar(df, x='Category', y='Values', title='Your Graph Title',
+                         labels={'Values': 'Values', 'Category': 'Category'},
+                         color='Values', color_continuous_scale='Viridis')
+            st.plotly_chart(fig, use_container_width=True)
             
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
