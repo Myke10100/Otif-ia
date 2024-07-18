@@ -55,7 +55,7 @@ if user_input:
         model=st.session_state.get("openai_model", "gpt-4o"),
         messages=messages
     )
-    response_text = response.choices[0].text.strip()
+    response_text = response['choices'][0]['message']['content']  # Corrección aquí
     st.session_state["messages"].append({"role": "assistant", "content": response_text})
     with st.chat_message("assistant"):
         st.markdown(response_text)
