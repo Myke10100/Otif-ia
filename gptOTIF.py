@@ -73,8 +73,6 @@ if user_input:
         plt.ylabel('Valor')
         st.pyplot(plt)
 
-# Actualización del estado
-st.experimental_rerun()
 
 
 
