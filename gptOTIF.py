@@ -1,7 +1,6 @@
 import streamlit as st
 from openai import OpenAI
 import matplotlib.pyplot as plt
-plt.style.use('seaborn-darkgrid')
 
 client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
