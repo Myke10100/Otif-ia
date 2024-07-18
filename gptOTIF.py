@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 import matplotlib.pyplot as plt
+plt.style.use('seaborn-darkgrid')
 
 client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
@@ -114,12 +115,14 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)
         if "graph" in prompt.lower():
             # Genera un gráfico de ejemplo
-            plt.figure(figsize=(6,3))
-            plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
-            plt.title("Gráfico de Demostración")
-            plt.xlabel("Eje X")
-            plt.ylabel("Eje Y")
-            st.pyplot(plt)  # Muestra el gráfico en Streamlit
+            plt.figure(figsize=(8, 4))
+            plt.plot([1, 2, 3, 4], [10, 15, 7, 10], marker='o', label='Serie A')
+            plt.title('Ejemplo de Gráfico Profesional')
+            plt.xlabel('Eje X')
+            plt.ylabel('Eje Y')
+            plt.legend()
+            plt.show()
+            
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
