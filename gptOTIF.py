@@ -47,7 +47,7 @@ for message in st.session_state["messages"]:
         st.markdown(message["content"])
 
 # Manejar la entrada del usuario
-user_input = st.text_input("Ask me a question about order management")
+user_input = st.text_input("Ask me a question about order management", key="user_input")
 if user_input:
     st.session_state["messages"].append({"role": "user", "content": user_input})
     messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state["messages"]]
@@ -55,22 +55,20 @@ if user_input:
         model=st.session_state.get("openai_model", "gpt-4o"),
         messages=messages
     )
-    response_text = response.choices[0].message["content"]
+    response_text = response.choices[0].text.strip()
     st.session_state["messages"].append({"role": "assistant", "content": response_text})
+    with st.chat_message("assistant"):
+        st.markdown(response_text)
 
     # Generar gráfico si es necesario
-    if "graph" in response_text.lower():  # Puedes ajustar la condición para detectar necesidad de gráfico
-        data = [float(s) for s in response_text.split() if s.isdigit()]  # Suposición de cómo se extraen los datos
+    if "graph" in response_text.lower():
+        data = [float(s) for s in response_text.split() if s.isdigit()]
         plt.figure(figsize=(10, 5))
         plt.plot(data)
         plt.title("Generated Graph")
         plt.xlabel("Index")
         plt.ylabel("Value")
         st.pyplot(plt)
-
-# Actualización del estado
-#if st.session_state["messages"]:
- #   st.experimental_rerun()
 
 
 
