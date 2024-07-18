@@ -69,8 +69,8 @@ if user_input:
         st.pyplot(plt)
 
 # Actualización del estado
-if st.session_state["messages"]:
-    st.experimental_rerun()
+#if st.session_state["messages"]:
+ #   st.experimental_rerun()
 
 
 
