@@ -114,7 +114,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
 
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
-            if "graph" in prompt.lower():
+        if "graph" in prompt.lower():
             # Suponiendo que tienes los datos necesarios ya en df
             fig = px.bar(df, x='Category', y='Values', title='Your Graph Title',
                          labels={'Values': 'Values', 'Category': 'Category'},
