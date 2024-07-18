@@ -3,4 +3,3 @@ openai  # Asegúrate de usar una versión que sea compatible con tu código.
 matplotlib
 requests
 numpy
-seaborn
