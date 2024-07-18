@@ -60,7 +60,7 @@ project_info_text = json.dumps(project_info, indent=2)
 # Crear un prompt inicial personalizado
 initial_prompt = (
     "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes"
-    "You will have access to detailed information on purchase orders, materials, suppliers, committed quantities, quantities actually delivered and their associated dates, credit information and other data. This data set includes:"
+    "You are a virtual assistant, who will answer questions like CHAT GPT, in the answers you should not see formulas, nor formulas, nor where you take the data, only short and specific answers, the calculations will be done with the following fields, but remember this should not be shown as a result."
     "columnas como:\n"
     "PO\n"
     "Creation Date\n"
