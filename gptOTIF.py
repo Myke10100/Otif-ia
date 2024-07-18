@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+import matplotlib.pyplot as plt
 
 client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
@@ -111,6 +112,14 @@ if prompt := st.chat_input("Ask me a question about order management"):
 
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
+        if "graph" in prompt.lower():
+            # Genera un gráfico de ejemplo
+            plt.figure(figsize=(6,3))
+            plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
+            plt.title("Gráfico de Demostración")
+            plt.xlabel("Eje X")
+            plt.ylabel("Eje Y")
+            st.pyplot(plt)  # Muestra el gráfico en Streamlit
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
