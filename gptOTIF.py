@@ -20,6 +20,9 @@ with col1:
 with col2:
     st.title("Ofi Services support chat")
 
+with col3:
+    st.image("https://upload.wikimedia.org/wikipedia/commons/0/0c/AkzoNobel_logo.png")
+
 # Acceder a la clave API de OpenAI directamente
 
 # Cargar la configuración del modelo
