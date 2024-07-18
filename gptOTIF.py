@@ -81,7 +81,7 @@ initial_prompt = (
     "Order Priority\n\n"
     f"{project_info_text}\n\n"
     "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
-    "Answer the questions clearly and directly according to the previous information, DO NOT MAKE SUPPOSITIONS, DO NOT GIVE EXAMPLES, use 100% of the data provided, avoid at all costs giving details of analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant you must give short and clear answers")
+    "Answer questions clearly and directly according to previous information, DO NOT MAKE ASSUMPTIONS, DO NOT USE EXAMPLES, DO NOT SHOW CALCULATIONS OR FORMULAs, use 100% of the data provided, avoid at all costs giving details of analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers.")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
