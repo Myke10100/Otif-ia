@@ -1990,29 +1990,5 @@
         "Accumulated Credit Used (%)": "9,17%",
         "Reasons for Delay On Time/Days": null,
         "Reasons for Delay In Full/ Days": null
-    },
-    {
-        "PV": "624133766",
-        "Client": "THE QUIKRETE COMPANIES, LLC",
-        "In Full": "ONWAAR",
-        "On Time": "ONWAAR",
-        "Material": "80# Mason Mix Type  S (113680-WX)",
-        "Supplier": "Grout Solutions",
-        "Order Value": " $ 12.099 ",
-        "Credit Limit": " $ 2.400.000 ",
-        "Business Unit": "Sack Kraft MX",
-        "Creation Date": "2-7-2022",
-        "Order Priority": "Medium",
-        "Committed Quantity": "47955",
-        "Warehouse Location": "Eindhoven",
-        "Actual Delivery Date": "21-8-2022",
-        "Delivery Delay (Days)": "2",
-        "Accumulated Credit used": " $ 54.450 ",
-        "Committed Delivery Date": "19-8-2022",
-        "Credit used by order (%)": "0,50%",
-        "Actual Delivered Quantity": "34173",
-        "Accumulated Credit Used (%)": "2,27%",
-        "Reasons for Delay On Time/Days": "{'Set Payment Block': 2}",
-        "Reasons for Delay In Full/ Days": "{'Set Payment Block': 2}"
     }
 ]
