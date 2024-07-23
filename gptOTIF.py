@@ -27,7 +27,7 @@ with col3:
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4-turbo"
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 # Inicializar los mensajes de la conversación
 if "messages" not in st.session_state:
