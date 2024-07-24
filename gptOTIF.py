@@ -1,5 +1,6 @@
 import streamlit as st
 from openai import OpenAI
+import pandas as pd
 import json
 import requests
 
@@ -115,11 +116,11 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat_completions.create(
+            response = client.ChatCompletion.create(
                 model=st.session_state["openai_model"],
                 messages=messages
             )
-            response_text = response.choices[0].message.content
+            response_text = response.choices[0].message["content"]
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
