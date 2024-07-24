@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import OpenAI
+import openai
 import json
 import requests
 
@@ -19,7 +19,7 @@ with col3:
     st.image("https://upload.wikimedia.org/wikipedia/commons/0/0c/AkzoNobel_logo.png")
 
 # Acceder a la clave API de OpenAI directamente
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
@@ -116,7 +116,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat_completions.create(
+            response = openai.ChatCompletion.create(
                 model=st.session_state["openai_model"],
                 messages=messages,
                 temperature=0.1,  # Temperatura mínima
@@ -129,6 +129,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
     st.session_state.messages.append({"role": "assistant", "content": response_text})
+
 
 
 
