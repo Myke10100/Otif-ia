@@ -1,5 +1,5 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 import json
 import requests
 
@@ -19,7 +19,7 @@ with col3:
     st.image("https://upload.wikimedia.org/wikipedia/commons/0/0c/AkzoNobel_logo.png")
 
 # Acceder a la clave API de OpenAI directamente
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+client = openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
