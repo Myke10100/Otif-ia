@@ -1,5 +1,5 @@
 streamlit
-openai>=1.0.0  # Asegúrate de usar una versión que sea compatible con tu código.
+openai  # Asegúrate de usar una versión que sea compatible con tu código.
 matplotlib
 requests
 numpy
