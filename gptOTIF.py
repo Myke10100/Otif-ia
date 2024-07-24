@@ -1,12 +1,9 @@
 import streamlit as st
 from openai import OpenAI
-import matplotlib.pyplot as plt
-import plotly.express as px
-import pandas as pd
-
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 import json
 import requests
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Configuración básica de la página
 st.set_page_config(layout="wide")
@@ -23,8 +20,6 @@ with col2:
 with col3:
     st.image("https://upload.wikimedia.org/wikipedia/commons/0/0c/AkzoNobel_logo.png")
 
-# Acceder a la clave API de OpenAI directamente
-
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-4o"
@@ -37,18 +32,15 @@ if "messages" not in st.session_state:
 @st.cache_data
 def load_project_management_info(url):
     response = requests.get(url)
-
     if response.status_code != 200:
         st.error(f"Error al obtener el JSON: {response.status_code}")
         st.stop()
 
     try:
         data = response.json()
-        
         # Validar la estructura del JSON
         if not isinstance(data, list) or not all(isinstance(d, dict) for d in data):
             raise ValueError("La estructura del JSON no es la esperada.")
-            
         return data
     except (json.JSONDecodeError, ValueError) as e:
         st.error(f"Error al decodificar o validar JSON: {str(e)}")
@@ -123,7 +115,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat.completions.create(
+            response = client.chat_completions.create(
                 model=st.session_state["openai_model"],
                 messages=messages
             )
@@ -133,15 +125,6 @@ if prompt := st.chat_input("Ask me a question about order management"):
 
         # Mostrar la respuesta del asistente
         st.markdown(response_text)
-        if "graph" in prompt.lower():
-            # Genera un gráfico de ejemplo
-            plt.figure(figsize=(6, 3))
-            plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
-            plt.title("Gráfico de Demostración")
-            plt.xlabel("Eje X")
-            plt.ylabel("Eje Y")
-            st.pyplot(plt)  # Muestra el gráfico en Streamlit
-            
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
