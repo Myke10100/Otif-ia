@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import pandas as pd
 
-client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 import json
 import requests
 
@@ -43,9 +43,15 @@ def load_project_management_info(url):
         st.stop()
 
     try:
-        return response.json()
-    except json.JSONDecodeError as e:
-        st.error(f"Error al decodificar JSON: {e.msg}")
+        data = response.json()
+        
+        # Validar la estructura del JSON
+        if not isinstance(data, list) or not all(isinstance(d, dict) for d in data):
+            raise ValueError("La estructura del JSON no es la esperada.")
+            
+        return data
+    except (json.JSONDecodeError, ValueError) as e:
+        st.error(f"Error al decodificar o validar JSON: {str(e)}")
         st.stop()
 
 # URL del archivo JSON en GitHub
@@ -70,7 +76,7 @@ initial_prompt = (
     "Client\n"
     "Committed Quantity\n"
     "Actual Delivered Quantity\n"
-    "Credit Limitd\n"
+    "Credit Limit\n"
     "Accumulated Credit used\n"
     "Credit used by order (%)\n"
     "Committed Delivery Date\n"
@@ -86,7 +92,8 @@ initial_prompt = (
     "Reasons for Delay In Full/ Days\n\n"
     f"{project_info_text}\n\n"
     "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
-    "Answer questions clearly and directly according to previous information, DO NOT MAKE ASSUMPTIONS, DO NOT USE EXAMPLES, DO NOT SHOW CALCULATIONS OR FORMULAs, use 100% of the data provided, avoid at all costs giving details of analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers.")
+    "Answer questions clearly and directly according to previous information, DO NOT MAKE ASSUMPTIONS, DO NOT USE EXAMPLES, DO NOT SHOW CALCULATIONS OR FORMULAs, use 100% of the data provided, avoid at all costs giving details of analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers."
+)
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
@@ -114,8 +121,10 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat.completions.create(model=st.session_state["openai_model"],
-            messages=messages)
+            response = client.chat.completions.create(
+                model=st.session_state["openai_model"],
+                messages=messages
+            )
             response_text = response.choices[0].message.content
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
@@ -124,7 +133,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)
         if "graph" in prompt.lower():
             # Genera un gráfico de ejemplo
-            plt.figure(figsize=(6,3))
+            plt.figure(figsize=(6, 3))
             plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
             plt.title("Gráfico de Demostración")
             plt.xlabel("Eje X")
