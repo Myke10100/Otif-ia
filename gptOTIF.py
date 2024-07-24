@@ -1,5 +1,7 @@
 import streamlit as st
 from openai import OpenAI
+
+client = OpenAI(api_key= st.secrets["OPENAI_API_KEY"])
 import json
 import requests
 
@@ -19,7 +21,6 @@ with col3:
     st.image("https://upload.wikimedia.org/wikipedia/commons/0/0c/AkzoNobel_logo.png")
 
 # Acceder a la clave API de OpenAI directamente
-client = openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Cargar la configuración del modelo
 if "openai_model" not in st.session_state:
@@ -50,19 +51,14 @@ json_url = "https://raw.githubusercontent.com/Myke10100/Otif-ia/main/dataotif.js
 # Cargar la información del proyecto
 project_info = load_project_management_info(json_url)
 
-# Verificar la carga del JSON
-if project_info:
-    st.success("JSON cargado correctamente.")
-else:
-    st.error("Error al cargar el JSON.")
-
-# Convertir el JSON en una cadena de texto para el prompt
+# Convertir el JSON en una cadena de texto
 project_info_text = json.dumps(project_info, indent=2)
 
 # Crear un prompt inicial personalizado
 initial_prompt = (
-    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes. "
-    "You are a virtual assistant, who will answer questions like CHAT GPT. In the answers, you should not see formulas or where you take the data, only short and specific answers. The calculations will be done with the following fields, but remember this should not be shown as a result:\n"
+    "You will be a virtual assistant who will act as a specialized consultant, with high knowledge in analysis related to OTIF processes"
+    "You are a virtual assistant, who will answer questions like CHAT GPT, in the answers you should not see formulas, nor formulas, nor where you take the data, only short and specific answers, the calculations will be done with the following fields, but remember this should not be shown as a result."
+    "Columns with data up to June remember, take the unique values, do not duplicate any information.:\n"
     "PO\n"
     "Creation Date\n"
     "Order Value\n"
@@ -71,7 +67,7 @@ initial_prompt = (
     "Client\n"
     "Committed Quantity\n"
     "Actual Delivered Quantity\n"
-    "Credit Limit\n"
+    "Credit Limitd\n"
     "Accumulated Credit used\n"
     "Credit used by order (%)\n"
     "Committed Delivery Date\n"
@@ -86,9 +82,8 @@ initial_prompt = (
     "Reasons for Delay On Time/Days\n"
     "Reasons for Delay In Full/ Days\n\n"
     f"{project_info_text}\n\n"
-    "If you receive a 'hello' or 'hi' greeting, introduce yourself by saying, 'Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?' "
-    "Answer questions clearly and directly according to previous information. DO NOT MAKE ASSUMPTIONS, DO NOT USE EXAMPLES, DO NOT SHOW CALCULATIONS OR FORMULAS. Use 100% of the data provided. Avoid at all costs giving details of analysis and technical data. Focus on practical and easy-to-understand information. Remember that you are a consultant and must give short and clear answers."
-)
+    "If you receive a “hello” or “hi” greeting, introduce yourself by saying, “Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?"
+    "Answer questions clearly and directly according to previous information, DO NOT MAKE ASSUMPTIONS, DO NOT USE EXAMPLES, DO NOT SHOW CALCULATIONS OR FORMULAs, use 100% of the data provided, avoid at all costs giving details of analysis and technical data, focus on practical and easy to understand information, remember that you are a consultant must give short and clear answers.")
 
 # Mostrar un mensaje de bienvenida y descripción
 if not st.session_state.messages:
@@ -116,18 +111,14 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = client.chat.completions.create(
-                model=st.session_state["openai_model"],
-                messages=messages,
-                temperature=0.1,  # Temperatura mínima
-                #max_tokens=500  # Máximo de 500 tokens
-            )
-            response_text = response.choices[0].message["content"]
+            response = client.chat.completions.create(model=st.session_state["openai_model"],
+            messages=messages)
+            response_text = response.choices[0].message.content
         except Exception as e:
             response_text = f"Error al obtener la respuesta de OpenAI: {str(e)}"
 
         # Mostrar la respuesta del asistente
-        st.markdown(response_text)
+        st.markdown(response_text)          
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
 
