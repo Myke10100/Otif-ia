@@ -120,7 +120,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
                 model=st.session_state["openai_model"],
                 messages=messages,
                 temperature=0.1,  # Temperatura mínima
-                max_tokens=500  # Máximo de 500 tokens
+                #max_tokens=500  # Máximo de 500 tokens
             )
             response_text = response.choices[0].message["content"]
         except Exception as e:
