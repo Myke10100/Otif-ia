@@ -116,7 +116,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
     with st.chat_message("assistant"):
         messages = [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
         try:
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model=st.session_state["openai_model"],
                 messages=messages,
                 temperature=0.1,  # Temperatura mínima
