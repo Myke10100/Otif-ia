@@ -51,6 +51,12 @@ json_url = "https://raw.githubusercontent.com/Myke10100/Otif-ia/main/dataotif.js
 # Cargar la información del proyecto
 project_info = load_project_management_info(json_url)
 
+# Verificar la carga del JSON
+if project_info:
+    st.success("JSON cargado correctamente.")
+else:
+    st.error("Error al cargar el JSON.")
+
 # Convertir el JSON en una cadena de texto
 project_info_text = json.dumps(project_info, indent=2)
 
