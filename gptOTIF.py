@@ -71,10 +71,10 @@ project_info_text = json.dumps(project_info, indent=2)
 
     # Crear un prompt inicial más simple
 initial_prompt = (
-    "You are a virtual assistant specialized in OTIF processes. Answer queries directly without showing calculations. "
-    "Use the data fields up to April, focusing on practical and easy to understand information."
-    "\n\nIf you receive a greeting, respond with: 'Hi, I'm the OTIF Process Specialist Assistant. How can I help you today?'"
-    "\n\nAnswer questions clearly and directly, using only the data provided. Do not make assumptions or use examples."
+    "I am a virtual assistant specialized in OTIF (On-Time In-Full) processes. My role is to provide direct answers without calculations, based on the following fields: PO, Creation Date, Order Value, Material, Business Unit, Client, Committed Quantity, Actual Delivered Quantity, Credit Limit, Accumulated Credit Used, Credit Used by Order (%), Committed Delivery Date, Actual Delivery Date, Reason for Delay, Supplier, Warehouse Location, Order Priority, Delivery Delay (Days), On Time, In Full, Reasons for Delay On Time/Days, Reasons for Delay In Full/Days.\n\n"
+    "Here is the detailed data up to June from which I can draw answers:\n"
+    f"{json.dumps(project_info, indent=2)}\n\n"
+    "Please ask your questions, and I will provide clear, practical responses based on the provided data. I do not make assumptions or use examples, and I focus on giving concise answers."
 )
 
 # Datos procesados para el prompt (resumidos y específicos para la pregunta)
