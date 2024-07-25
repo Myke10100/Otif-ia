@@ -52,7 +52,16 @@ project_info = load_project_management_info(json_url)
 
 if project_info:
     st.success("JSON cargado correctamente.")
-    project_info_text = json.dumps(project_info, indent=2)
+    st.write("Datos cargados:", project_info)  # Debug: Ver los datos cargados
+    # Procesar los datos para contar órdenes por mes, por ejemplo
+    orders_by_month = {}
+    for item in project_info:
+        month = item['Creation Date'].split('-')[1]
+        if month in orders_by_month:
+            orders_by_month[month] += 1
+        else:
+            orders_by_month[month] = 1
+    st.write("Órdenes por mes:", orders_by_month)  # Debug: Verificar el conteo
 else:
     st.error("Error al cargar el JSON.")
 
