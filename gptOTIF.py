@@ -31,19 +31,18 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Función para cargar el JSON de gestión de proyectos desde GitHub
-@st.cache_data
+@st.cache(ttl=600, allow_output_mutation=True)  # Cache for 10 minutes, allow mutation of the cached result
 def load_project_management_info(url):
     response = requests.get(url)
-
-    if response.status_code != 200:
+    if response.status_code == 200:
+        try:
+            return response.json()  # Directly return the JSON object
+        except json.JSONDecodeError as e:
+            st.error(f"Error al decodificar JSON: {e.msg}")
+            return None
+    else:
         st.error(f"Error al obtener el JSON: {response.status_code}")
-        st.stop()
-
-    try:
-        return response.json()
-    except json.JSONDecodeError as e:
-        st.error(f"Error al decodificar JSON: {e.msg}")
-        st.stop()
+        return None
 
 # URL del archivo JSON en GitHub
 json_url = "https://raw.githubusercontent.com/Myke10100/Otif-ia/main/dataotif.json"
@@ -51,9 +50,9 @@ json_url = "https://raw.githubusercontent.com/Myke10100/Otif-ia/main/dataotif.js
 # Cargar la información del proyecto
 project_info = load_project_management_info(json_url)
 
-# Verificar la carga del JSON
 if project_info:
     st.success("JSON cargado correctamente.")
+    project_info_text = json.dumps(project_info, indent=2)
 else:
     st.error("Error al cargar el JSON.")
 
