@@ -68,8 +68,7 @@ else:
 # Convertir el JSON en una cadena de texto
 project_info_text = json.dumps(project_info, indent=2)
 
-# Crear un prompt inicial personalizado
-initial_prompt = (
+
     # Crear un prompt inicial más simple
 initial_prompt = (
     "You are a virtual assistant specialized in OTIF processes. Answer queries directly without showing calculations. "
