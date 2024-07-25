@@ -358,5 +358,29 @@
         "Accumulated Credit Used (%)": "10,20%",
         "Reasons for Delay On Time/Days": null,
         "Reasons for Delay In Full/ Days": null
+    },
+    {
+        "PV": "623139135",
+        "Client": "HAMPTON LUMBER SALES",
+        "In Full": "FALSE",
+        "On Time": "TRUE",
+        "Material": "PLY PINO AC EXT 2440X1220X9 S2S 3P",
+        "Supplier": "WoodCo Supplies",
+        "Order Value": " $ 31.450 ",
+        "Credit Limit": " $ 1.000.000 ",
+        "Business Unit": "Timbers",
+        "Creation Date": "22-2-2022",
+        "Order Priority": "Medium",
+        "Committed Quantity": "1404",
+        "Warehouse Location": "Utrecht",
+        "Actual Delivery Date": "21-3-2022",
+        "Delivery Delay (Days)": "0",
+        "Accumulated Credit used": " $ 31.450 ",
+        "Committed Delivery Date": "21-3-2022",
+        "Credit used by order (%)": "3,14%",
+        "Actual Delivered Quantity": "725",
+        "Accumulated Credit Used (%)": "3,14%",
+        "Reasons for Delay On Time/Days": null,
+        "Reasons for Delay In Full/ Days": null
     }
 ]
