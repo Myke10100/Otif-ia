@@ -66,7 +66,9 @@ else:
     st.error("Error al cargar el JSON.")
 
 # Convertir el JSON en una cadena de texto
-project_info_text = json.dumps(project_info, indent=2)
+project_info_text = json.dumps(project_info, indent=2
+
+print({project_info_text})
 
 
     # Crear un prompt inicial más simple
@@ -117,7 +119,7 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)          
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
-print({project_info_text})
+
 
 
 
