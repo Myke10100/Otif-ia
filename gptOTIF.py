@@ -68,7 +68,7 @@ else:
 # Convertir el JSON en una cadena de texto
 project_info_text = json.dumps(project_info, indent=2)
 
-st.write(({project_info_text})
+st.write(project_info_text)
 
 
     # Crear un prompt inicial más simple
