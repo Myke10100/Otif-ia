@@ -20,8 +20,8 @@
         "Credit used by order (%)": "0,11%",
         "Actual Delivered Quantity": "9253",
         "Accumulated Credit Used (%)": "0,11%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 5",
-        "Reasons for Delay In Full/ Days": "Receive advanced shipment notice (ASN)': 2, 'Remove Payment Block': 0"
+        "Reasons for Delay On Time/Days": "Change Storage Location: 5",
+        "Reasons for Delay In Full/ Days": "Receive advanced shipment notice (ASN): 2, Remove Payment Block: 0"
     },
     {
         "PV": "623031416",
@@ -68,8 +68,8 @@
         "Credit used by order (%)": "0,73%",
         "Actual Delivered Quantity": "290",
         "Accumulated Credit Used (%)": "0,73%",
-        "Reasons for Delay On Time/Days": "Change Quantity': 5",
-        "Reasons for Delay In Full/ Days": "Change Storage Location': 1, 'Change requested delivery date': 8"
+        "Reasons for Delay On Time/Days": "Change Quantity: 5",
+        "Reasons for Delay In Full/ Days": "Change Storage Location: 1, Change requested delivery date: 8"
     },
     {
         "PV": "623950388",
@@ -92,8 +92,8 @@
         "Credit used by order (%)": "3,09%",
         "Actual Delivered Quantity": "397",
         "Accumulated Credit Used (%)": "3,09%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 1, 'Cancel Goods Receipt': 1, 'Cancel Invoice Receipt': 8",
-        "Reasons for Delay In Full/ Days": "Remove Payment Block': 0"
+        "Reasons for Delay On Time/Days": "Change Storage Location: 1, Cancel Goods Receipt: 1, Cancel Invoice Receipt: 8",
+        "Reasons for Delay In Full/ Days": "Remove Payment Block: 0"
     },
     {
         "PV": "626680746",
@@ -164,8 +164,8 @@
         "Credit used by order (%)": "3,23%",
         "Actual Delivered Quantity": "31125",
         "Accumulated Credit Used (%)": "3,23%",
-        "Reasons for Delay On Time/Days": "Change Price': 1",
-        "Reasons for Delay In Full/ Days": "Change requested delivery date': 1"
+        "Reasons for Delay On Time/Days": "Change Price: 1",
+        "Reasons for Delay In Full/ Days": "Change requested delivery date: 1"
     },
     {
         "PV": "622753207",
@@ -236,7 +236,7 @@
         "Credit used by order (%)": "5,07%",
         "Actual Delivered Quantity": "910",
         "Accumulated Credit Used (%)": "5,07%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 3, 'Change Quantity': 4",
+        "Reasons for Delay On Time/Days": "Change Storage Location: 3, Change Quantity: 4",
         "Reasons for Delay In Full/ Days": null
     },
     {
@@ -260,7 +260,7 @@
         "Credit used by order (%)": "2,25%",
         "Actual Delivered Quantity": "47925",
         "Accumulated Credit Used (%)": "2,25%",
-        "Reasons for Delay On Time/Days": "Change Price': 2",
+        "Reasons for Delay On Time/Days": "Change Price: 2",
         "Reasons for Delay In Full/ Days": null
     },
     {
@@ -404,8 +404,8 @@
         "Credit used by order (%)": "3,14%",
         "Actual Delivered Quantity": "1357",
         "Accumulated Credit Used (%)": "6,29%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 0, 'Change Quantity': 1",
-        "Reasons for Delay In Full/ Days": "Change Storage Location': 0, 'Set Payment Block': 9, 'Remove Payment Block': 0"
+        "Reasons for Delay On Time/Days": "Change Storage Location: 0, Change Quantity: 1",
+        "Reasons for Delay In Full/ Days": "Change Storage Location: 0, Set Payment Block: 9, Remove Payment Block: 0"
     },
     {
         "PV": "628115329",
@@ -452,8 +452,8 @@
         "Credit used by order (%)": "0,37%",
         "Actual Delivered Quantity": "181",
         "Accumulated Credit Used (%)": "1,10%",
-        "Reasons for Delay On Time/Days": "Set Payment Block': 1",
-        "Reasons for Delay In Full/ Days": "Change Storage Location': 2, 'Receive advanced shipment notice (ASN)': 1"
+        "Reasons for Delay On Time/Days": "Set Payment Block: 1",
+        "Reasons for Delay In Full/ Days": "Change Storage Location: 2, Receive advanced shipment notice (ASN): 1"
     },
     {
         "PV": "620718033",
@@ -524,8 +524,8 @@
         "Credit used by order (%)": "5,92%",
         "Actual Delivered Quantity": "46668",
         "Accumulated Credit Used (%)": "5,92%",
-        "Reasons for Delay On Time/Days": "Change Quantity': 0, 'Set Payment Block': 2",
-        "Reasons for Delay In Full/ Days": "Remove Payment Block': 7"
+        "Reasons for Delay On Time/Days": "Change Quantity: 0, Set Payment Block: 2",
+        "Reasons for Delay In Full/ Days": "Remove Payment Block: 7"
     },
     {
         "PV": "622793243",
@@ -548,8 +548,8 @@
         "Credit used by order (%)": "0,52%",
         "Actual Delivered Quantity": "21665",
         "Accumulated Credit Used (%)": "0,52%",
-        "Reasons for Delay On Time/Days": "Change Price': 1",
-        "Reasons for Delay In Full/ Days": "Change Storage Location': 2, 'Receive advanced shipment notice (ASN)': 3"
+        "Reasons for Delay On Time/Days": "Change Price: 1",
+        "Reasons for Delay In Full/ Days": "Change Storage Location: 2, Receive advanced shipment notice (ASN): 3"
     },
     {
         "PV": "623822224",
@@ -572,8 +572,8 @@
         "Credit used by order (%)": "1,30%",
         "Actual Delivered Quantity": "43923",
         "Accumulated Credit Used (%)": "4,06%",
-        "Reasons for Delay On Time/Days": "Cancel Goods Receipt': 6, 'Change Storage Location': 3",
-        "Reasons for Delay In Full/ Days": "Remove Payment Block': 0"
+        "Reasons for Delay On Time/Days": "Cancel Goods Receipt: 6, Change Storage Location: 3",
+        "Reasons for Delay In Full/ Days": "Remove Payment Block: 0"
     },
     {
         "PV": "627873670",
@@ -668,8 +668,8 @@
         "Credit used by order (%)": "0,00%",
         "Actual Delivered Quantity": "1",
         "Accumulated Credit Used (%)": "0,52%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 4",
-        "Reasons for Delay In Full/ Days": "Set Payment Block': 4"
+        "Reasons for Delay On Time/Days": "Change Storage Location: 4",
+        "Reasons for Delay In Full/ Days": "Set Payment Block: 4"
     },
     {
         "PV": "624040666",
@@ -692,8 +692,8 @@
         "Credit used by order (%)": "4,86%",
         "Actual Delivered Quantity": "483",
         "Accumulated Credit Used (%)": "9,92%",
-        "Reasons for Delay On Time/Days": "Cancel Goods Receipt': 2, 'Change Storage Location': 4",
-        "Reasons for Delay In Full/ Days": "Change Storage Location': 4"
+        "Reasons for Delay On Time/Days": "Cancel Goods Receipt: 2, Change Storage Location: 4",
+        "Reasons for Delay In Full/ Days": "Change Storage Location: 4"
     },
     {
         "PV": "624040671",
@@ -716,7 +716,7 @@
         "Credit used by order (%)": "4,86%",
         "Actual Delivered Quantity": "910",
         "Accumulated Credit Used (%)": "14,78%",
-        "Reasons for Delay On Time/Days": "Set Payment Block': 6, 'Cancel Invoice Receipt': 2, 'Change Price': 3",
+        "Reasons for Delay On Time/Days": "Set Payment Block: 6, Cancel Invoice Receipt: 2, Change Price: 3",
         "Reasons for Delay In Full/ Days": null
     },
     {
@@ -812,8 +812,8 @@
         "Credit used by order (%)": "0,20%",
         "Actual Delivered Quantity": "76",
         "Accumulated Credit Used (%)": "0,20%",
-        "Reasons for Delay On Time/Days": "Change Storage Location': 3, 'Cancel Invoice Receipt': 1",
-        "Reasons for Delay In Full/ Days": "Set Payment Block': 1, 'Remove Payment Block': 2"
+        "Reasons for Delay On Time/Days": "Change Storage Location: 3, Cancel Invoice Receipt: 1",
+        "Reasons for Delay In Full/ Days": "Set Payment Block: 1, Remove Payment Block: 2"
     },
     {
         "PV": "623208715",
@@ -836,7 +836,7 @@
         "Credit used by order (%)": "0,49%",
         "Actual Delivered Quantity": "54",
         "Accumulated Credit Used (%)": "0,49%",
-        "Reasons for Delay On Time/Days": "Change Price': 9, 'Change Quantity': 2",
-        "Reasons for Delay In Full/ Days": "Remove Payment Block': 0"
+        "Reasons for Delay On Time/Days": "Change Price: 9, Change Quantity: 2",
+        "Reasons for Delay In Full/ Days": "Remove Payment Block: 0"
     }
 ]
