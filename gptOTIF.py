@@ -31,7 +31,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Función para cargar el JSON de gestión de proyectos desde GitHub
-@st.cache(ttl=600, allow_output_mutation=True)  # Cache for 10 minutes, allow mutation of the cached result
+st.cache_resource# Cache for 10 minutes, allow mutation of the cached result
 def load_project_management_info(url):
     response = requests.get(url)
     if response.status_code == 200:
