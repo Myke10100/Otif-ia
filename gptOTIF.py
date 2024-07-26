@@ -117,6 +117,8 @@ if prompt := st.chat_input("Ask me a question about order management"):
         st.markdown(response_text)          
     st.session_state.messages.append({"role": "assistant", "content": response_text})
 
+print({project_info_text})
+
 
 
 
