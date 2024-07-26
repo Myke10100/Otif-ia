@@ -66,7 +66,7 @@ else:
     st.error("Error al cargar el JSON.")
 
 # Convertir el JSON en una cadena de texto
-project_info_text = json.dumps(project_info, indent=2
+project_info_text = json.dumps(project_info, indent=2)
 
 print({project_info_text})
 
